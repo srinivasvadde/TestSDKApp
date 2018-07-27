@@ -104,7 +104,7 @@ IWGameSession mWGSession = OnmoWGSDK.newInitializer(mContext)
 
 
 
-See the [`WGOnmoSDKDemoApp`] for sample accessing the SDK methods details.
+See the [`WGOnmoSDKDemoApp`](https://github.com/srinivasvadde/WGOnmoSDKDemoApp) for the details use of SDK methods and integration.
 
 
 
