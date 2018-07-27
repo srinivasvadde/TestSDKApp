@@ -1,15 +1,12 @@
 package com.cnu.test;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.onmo.wgames.sdk.IResponseHandler;
 import com.onmo.wgames.sdk.IWGameSession;
-import com.onmo.wgames.sdk.LibMainActivity;
 import com.onmo.wgames.sdk.OnmoWGSDK;
 import com.onmo.wgames.sdk.SDKException;
 
@@ -30,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         tv_method_2 = findViewById(R.id.tv_method_2);
 
         response_message = findViewById(R.id.response_message);
+
         // getting session object to access the SDK methods
         mWGSession = OnmoWGSDK.newInitializer(MainActivity.this)
                 .build();
@@ -38,21 +36,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                mWGSession.getUserId(new IResponseHandler<String>() {
+                    @Override
+                    public void handleResponse(String aUserId) {
+                        response_message.setText("User id:"+aUserId);
+                    }
 
-                if(mWGSession!=null)
-                {
-                    mWGSession.getStoreUser(new IResponseHandler<String>() {
-                        @Override
-                        public void handleResponse(String aUserId) {
-                            response_message.setText("User id:"+aUserId);
-                        }
+                    @Override
+                    public void handleException(SDKException exception) {
+                        response_message.setText("error::"+exception.getMessage());
+                    }
+                });
 
-                        @Override
-                        public void handleException(SDKException exception) {
-                            response_message.setText("error::"+exception.getMessage());
-                        }
-                    });
-                }
             }
         });
 
@@ -61,14 +56,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                try {
-                    Intent intent = new Intent(MainActivity.this, LibMainActivity.class);
-                    startActivity(intent);
-                }
-                catch (Exception ex)
-                {
-                    Log.d(TAG, "Exception --->"+ex.getMessage());
-                }
+                mWGSession.isUserActive(new IResponseHandler<Boolean>() {
+                    @Override
+                    public void handleResponse(Boolean config) {
+                        response_message.setText("isUserActive:"+config.booleanValue());
+                    }
+
+                    @Override
+                    public void handleException(SDKException exception) {
+                        response_message.setText("error::"+exception.getMessage());
+                    }
+                });
             }
         });
     }
