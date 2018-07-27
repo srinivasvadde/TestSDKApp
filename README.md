@@ -11,29 +11,29 @@ just start your app and complete the below integration set-up given instructions
 ## Set-up
 
 
-##### Step 1. Add the JitPack repository to your build file
+ *   Step 1. Add the JitPack repository to your build file
 
-Add it in your root build.gradle at the end of repositories:
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://www.jitpack.io' }
+    Add it in your root build.gradle at the end of repositories:
+    ```groovy
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://www.jitpack.io' }
+        }
     }
-}
-```
+    ```
 
 
-##### Step 2. Add the dependency in app build.gradle
+ *   Step 2. Add the dependency in app build.gradle
 
-```groovy
-implementation 'com.github.srinivasvadde:OnmoWGameSDK:1.17'
-```
+    ```groovy
+    implementation 'com.github.srinivasvadde:OnmoWGameSDK:1.17'
+    ```
 
 
 ### Usage
 
-Integrating with Wrapper Game Onmo SDK is simple and straightforward access to Wrapper Game applications.
+ Integrating with Wrapper Game Onmo SDK is simple and straightforward access to Wrapper Game applications.
 There is a simple initialization step required in your `MainActivity` or `Application class`:
 
 ```java
